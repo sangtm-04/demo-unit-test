@@ -1,0 +1,78 @@
+﻿@{
+    ViewData["Title"] = "Product";
+}
+
+<h1 class="mb-4">List of products</h1>
+<div class="mb-4 action-button-group">
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#insertOrUpdateModal" data-action="Insert">Insert</button>
+    <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#insertOrUpdateModal" data-action="Update" disabled>Update</button>
+    <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#deleteModal" data-action="Delete" disabled>Delete</button>
+</div>
+
+<div class="modal fade" id="insertOrUpdateModal" tabindex="-1" role="dialog" aria-labelledby="insertOrUpdateModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="insertOrUpdateModal"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="product-name" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="product-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="product-price" class="col-form-label">Price (USD):</label>
+                        <input type="text" class="form-control" id="product-price">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btn-save">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Delete -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModal">Delete a product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to permanently delete product <span class="product-name"><b></b></span>?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-danger btn-confirm-delete">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script src="~/js/views/product.js" asp-append-version="true"></script>
+}
