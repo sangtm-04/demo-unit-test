@@ -15,10 +15,16 @@ class Product {
      * */
     initEvents() {
         $('#insertOrUpdateModal').on('show.bs.modal', this.showInsertOrUpdateModal);
+        $('#insertOrUpdateModal').on('shown.bs.modal', function () { $('#product-name').trigger('focus'); });
         $('#deleteModal').on('show.bs.modal', this.showDeleteModal);
         $(document).on('click', 'table tbody tr', this.tableRowOnClick);
         $(document).on('click', '.modal-footer .btn-save', this.btnSaveOnClick.bind(this));
         $(document).on('click', '.modal-footer .btn-confirm-delete', this.btnConfirmDeleteOnClick.bind(this));
+        $(document).keypress(function (e) {
+            if ($("#insertOrUpdateModal").hasClass('show') && (e.keycode == 13 || e.which == 13)) {
+                $('.btn-save').trigger('focus');
+            }
+        });
     }
 
     /**
@@ -28,7 +34,7 @@ class Product {
      */
     showInsertOrUpdateModal(event) {
         var button = $(event.relatedTarget);
-        var action = button.data("action"); 
+        var action = button.data("action");
 
         var modal = $(this);
         modal.find('.modal-title').text(action + ' a product')
